@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Stripe\Stripe;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         //
 
             Stripe::setApiKey(config('services.stripe.secret'));
+            Schema::defaultStringLength(191);
     }
 
     /**

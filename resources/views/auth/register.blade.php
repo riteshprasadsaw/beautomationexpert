@@ -69,7 +69,7 @@
 
                         <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
-                             <div class="g-recaptcha" data-sitekey="6LdeYhoUAAAAAL6Bi1vVWyfw_HwpEhTmG9-OQ5b8"></div>
+                             <div class="g-recaptcha" data-sitekey="6Lc2KB0UAAAAAIVVdLut_E_UVxmuHLoGA5DTZthF"></div>
                         </div>
                         </div>
 
