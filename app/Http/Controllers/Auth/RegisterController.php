@@ -87,7 +87,7 @@ class RegisterController extends Controller
         $client = new \GuzzleHttp\Client();
         $response=$client->post('https://www.google.com/recaptcha/api/siteverify',[
             'form_params'=>array(
-                'secret'=>'6Lc2KB0UAAAAAMM_iYO-BMiJ8p2cSrhk2Jg2nccQ',
+                'secret'=>'6LdeYhoUAAAAAMcS_L15f7xfAiOb1E47CFobaJGz',
                 'response'=>$gtoken
                 )
 
