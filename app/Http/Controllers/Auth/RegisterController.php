@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Mail\WelcomeAgain;
 use Guzzlehttp\Client;
+use App\SocialProvider;
 
 class RegisterController extends Controller
 {
@@ -87,7 +88,7 @@ class RegisterController extends Controller
         $client = new \GuzzleHttp\Client();
         $response=$client->post('https://www.google.com/recaptcha/api/siteverify',[
             'form_params'=>array(
-                'secret'=>'6LdeYhoUAAAAAMcS_L15f7xfAiOb1E47CFobaJGz',
+                'secret'=>config('myfile.RE_CAP_SECRET'),
                 'response'=>$gtoken
                 )
 
@@ -131,6 +132,68 @@ class RegisterController extends Controller
             return redirect(route('login'))->with('status','Your activation is completed. Please login to continue.');
         }
         return redirect(route('login'))->with('status','Whoops!,Something went wrong');
+    }
+
+
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider($provider)
+    {
+        return \Socialite::driver($provider)->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback($provider)
+    {
+        
+
+       
+
+        try {
+
+          $socialUser = \Socialite::driver($provider)->user();
+
+        } catch (Exception $e) {
+            
+            return redirect('/');
+        }
+
+        $socialProvider=SocialProvider::where('provider_id', $socialUser->getId())->first();
+
+        if(!$socialProvider)
+        {
+            $user=User::firstOrCreate(
+                ['email'=>$socialUser->getEmail()],
+                ['name'=>$socialUser->getName()]
+                );
+            $user->socialProviders()->create(
+                ['provider_id'=>$socialUser->getId(), 'provider'=>$provider]
+                );
+
+        }else{
+
+            $user=$socialProvider->user();
+           
+         
+           
+        }
+
+          $socialUserProviders=SocialProvider::where('provider_id', $socialUser->getId())->get()->toArray();
+          
+          foreach ($socialUserProviders as $socialUserProvider) {
+            $socialUserProvider['user_id'];
+          }
+        \Auth::loginUsingId($socialUserProvider['user_id']);
+        return redirect('/home');
+         
+
     }
 
 }

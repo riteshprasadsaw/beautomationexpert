@@ -43,4 +43,7 @@ class User extends Authenticatable
         return $this->hasMany(Video::class);
     }
    
+    public function socialProviders(){
+        return $this->hasMany(SocialProvider::class);
+    }
 }

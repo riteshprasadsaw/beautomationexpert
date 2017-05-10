@@ -48,3 +48,6 @@ Route::post('profile','UsersController@update_avatar');
 Route::post('profile/{id}', 'UsersController@delete_account');
 
 Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
+
+Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');

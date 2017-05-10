@@ -43,7 +43,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'SeleniumMadeEasy') }}
                     </a>
                 </div>
 
@@ -104,7 +104,7 @@
     </div>
 
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
      <script src="https://checkout.stripe.com/checkout.js"></script>
      <script src="/js/app.js"></script>
@@ -118,6 +118,7 @@
      <script src="http://vjs.zencdn.net/5.19./video.js"></script>
      <script src="//cdn.sc.gl/videojs-hotkeys/0.2/videojs.hotkeys.min.js"></script>
      <script src="/js/main.js"></script>
+     {{-- <script src="{{ asset('js/main.js') }}"></script> --}}
      <script src='https://www.google.com/recaptcha/api.js'></script>
 
      

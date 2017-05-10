@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">Log In</div>
                 <div class="panel-body">
 
                     @if($status=Session::get('status'))
@@ -58,12 +58,21 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Login
+                                    Log In
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
+
+                                <br/>
+
+                                <div class="social" style="margin-top: 40px;">
+ 
+                                <a href="auth/google" class="btn btn-danger">Continue With Google</a>
+                                <a href="auth/facebook" class="btn btn-primary">Continue With Facebook</a>
+
+                                </div>
                             </div>
                         </div>
                     </form>
